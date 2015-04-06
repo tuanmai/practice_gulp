@@ -13,15 +13,19 @@ var gulp          = require("gulp"),
 
 
 // ----------------------------------------------------------------
+var dest = {
+  js: "dist/js",
+  css: "dist/css",
+  img: "dist/img",
+  min_css: "app.css.min",
+  min_js: "app.js.min",
+}
 
-var dest_js     = "dist/js"
-var dest_css    = "dist/css"
-var dest_img    = "dist/img"
-
-
-var src_js      = "src/js/**/*.js"
-var src_sass    = "src/sass/**/*.scss"
-var src_img    = "src/img/*"
+var src = {
+  js: "src/js/**/*.js",
+  sass: "src/sass/**/*.scss",
+  img: "src/img/*",
+}
 
 var onError = function(err) {
   console.log(err);
@@ -33,18 +37,18 @@ var onError = function(err) {
 
 // SASS to CSS
 gulp.task('sass', function() {
-  return gulp.src(src_sass)
+  return gulp.src(src.sass)
       .pipe(plumber({
         errorHandler: onError
       }))
       .pipe(sass())
-      .pipe(concat('app.min.css'))
+      .pipe(concat(dest.min_css))
       .pipe(prefix('last 2 versions'))
-      .pipe(gulp.dest(dest_css))
+      .pipe(gulp.dest(dest.css))
       .pipe(minify_css())
       .pipe(sourcemaps.init())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(dest_css));
+      .pipe(gulp.dest(dest.css));
       // .pipe(notify({ message: 'Hello world, we are done!' }))
 });
 
@@ -52,22 +56,22 @@ gulp.task('sass', function() {
 
 // Compile JS
 gulp.task('js', function() {
-  return gulp.src(src_js)
+  return gulp.src(src.js)
       .pipe(plumber({
         errorHandler: onError
       }))
       .pipe(uglify())
-      .pipe(concat('app.min.js'))
+      .pipe(concat(dest.min_js))
       .pipe(sourcemaps.init())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(dest_js));
+      .pipe(gulp.dest(dest.js));
 });
 // ----------------------------------------------------------------
 
 // Images
 gulp.task('img', function() {
-  return gulp.src(src_img)
-      .pipe(gulp.dest(dest_img));
+  return gulp.src(src.img)
+      .pipe(gulp.dest(dest.img));
 });
 
 // ----------------------------------------------------------------
@@ -75,8 +79,9 @@ gulp.task('img', function() {
 // Watch
 
 gulp.task('watch', function() {
-  gulp.watch(src_js, ['js']);
-  gulp.watch(src_sass, ['sass']);
+  gulp.watch(src.js, ['js']);
+  gulp.watch(src.sass, ['sass']);
+  gulp.watch(src.img, ['img']);
 });
 
 // ----------------------------------------------------------------
