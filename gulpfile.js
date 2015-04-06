@@ -49,7 +49,9 @@ gulp.task('sass', function() {
 // Compile JS
 gulp.task('js', function() {
   return gulp.src(src_js)
-      .pipe(plumber())
+      .pipe(plumber({
+        errorHandler: onError
+      }))
       .pipe(uglify())
       .pipe(concat('app.min.js'))
       .pipe(sourcemaps.init())
