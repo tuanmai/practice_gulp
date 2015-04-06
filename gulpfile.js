@@ -9,7 +9,9 @@ var gulp          = require("gulp"),
     imagemin      = require("gulp-imagemin"),
     notify        = require("gulp-notify"),
     pngquant      = require("imagemin-pngquant"),
-    prefix        = require("gulp-autoprefixer");
+    prefix        = require("gulp-autoprefixer"),
+    jshint        = require("gulp-jshint"),
+    browserSync   = require("browser-sync");
 
 
 // ----------------------------------------------------------------
