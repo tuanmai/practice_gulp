@@ -39,3 +39,12 @@ gulp.task('js', function() {
       .pipe(concat('app.min.js'))
       .pipe(gulp.dest(dest_js))
 });
+
+// ----------------------------------------------------------------
+
+// Watch
+
+gulp.task('watch', function() {
+  gulp.watch(src_js, ['js']);
+  gulp.watch(src_sass, ['sass'])
+});
