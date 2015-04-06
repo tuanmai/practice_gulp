@@ -16,8 +16,12 @@ var gulp          = require("gulp"),
 
 var dest_js     = "dist/js"
 var dest_css    = "dist/css"
+var dest_img    = "dist/img"
+
+
 var src_js      = "src/js/**/*.js"
 var src_sass    = "src/sass/**/*.scss"
+var src_img    = "src/img/*"
 
 var onError = function(err) {
   console.log(err);
@@ -40,7 +44,7 @@ gulp.task('sass', function() {
       .pipe(minify_css())
       .pipe(sourcemaps.init())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(dest_css))
+      .pipe(gulp.dest(dest_css));
       // .pipe(notify({ message: 'Hello world, we are done!' }))
 });
 
@@ -56,7 +60,14 @@ gulp.task('js', function() {
       .pipe(concat('app.min.js'))
       .pipe(sourcemaps.init())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(dest_js))
+      .pipe(gulp.dest(dest_js));
+});
+// ----------------------------------------------------------------
+
+// Images
+gulp.task('img', function() {
+  return gulp.src(src_img)
+      .pipe(gulp.dest(dest_img));
 });
 
 // ----------------------------------------------------------------
@@ -65,5 +76,5 @@ gulp.task('js', function() {
 
 gulp.task('watch', function() {
   gulp.watch(src_js, ['js']);
-  gulp.watch(src_sass, ['sass'])
+  gulp.watch(src_sass, ['sass']);
 });
