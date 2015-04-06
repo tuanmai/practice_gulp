@@ -5,9 +5,11 @@ var gulp          = require("gulp"),
     plumber       = require("gulp-plumber"),
     minify_css    = require("gulp-minify-css"),
     uglify        = require("gulp-uglify"),
-    sourcemaps    = require("gulp-sourcemaps")
-    imagemin      = require("gulp-imagemin")
-    prefixer      = require("gulp-autoprefixer");
+    sourcemaps    = require("gulp-sourcemaps"),
+    imagemin      = require("gulp-imagemin"),
+    notify        = require("gulp-notify"),
+    pngquant      = require("imagemin-pngquant"),
+    prefix        = require("gulp-autoprefixer");
 
 
 // ----------------------------------------------------------------
