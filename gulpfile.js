@@ -78,3 +78,9 @@ gulp.task('watch', function() {
   gulp.watch(src_js, ['js']);
   gulp.watch(src_sass, ['sass']);
 });
+
+// ----------------------------------------------------------------
+
+// Default
+
+gulp.task('default', ['watch', 'sass', 'js', 'img']);
